@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lecturer QR Generator</title>
+  <style>
+    body {
+      background-color: #d4edda;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 40px;
+      position: relative;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      color: rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="watermark">DREVO</div>
+
+  <div class="container">
+    <h2>Lecturer QR Code Generator</h2>
+
+    <label for="lecturerName">Lecturer Name:</label><br>
+    <input type="text" id="lecturerName" required><br><br>
+
+    <label for="courseCode">Course Code:</label><br>
+    <input type="text" id="courseCode" required><br><br>
+
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div id="qrcode"></div>
+  </div>
+
+  <!-- QRCode.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    function generateQR() {
+      const name = document.getElementById("lecturerName").value.trim();
+      const code = document.getElementById("courseCode").value.trim();
+
+      if (!name || !code) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      const qrData = `Lecturer: ${name}, Course: ${code}`;
+
+      // Clear previous QR
+      document.getElementById("qrcode").innerHTML = "";
+
+      // Generate new QR
+      new QRCode(document.getElementById("qrcode"), {
+        text: qrData,
+        width: 200,
+        height: 200
+      });
+    }
+  </script>
+</body>
+</html>

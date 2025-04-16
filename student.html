@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Attendance</title>
+  <style>
+    body {
+      background-color: #c8f7c5; /* light green background */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      position: relative;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* Watermark */
+    body::before {
+      content: "DREVO";
+      font-size: 100px;
+      color: rgba(0, 100, 0, 0.05);
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      z-index: 1;
+      position: relative;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      cursor: pointer;
+      width: 85%;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    video {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Attendance</h2>
+
+  <form id="attendanceForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" placeholder="Enter your name" required><br>
+
+    <label for="matric">Matric Number:</label><br>
+    <input type="text" id="matric" placeholder="Enter matric number" required><br>
+
+    <label for="session">Session:</label><br>
+    <input type="text" id="session" placeholder="e.g. 2024/2025 Second Semester" required><br>
+
+    <button type="button" onclick="startScan()">Start Scanning</button><br><br>
+
+    <video id="preview" width="300" height="200"></video><br><br>
+
+    <button type="submit">Submit Attendance</button>
+  </form>
+
+  <!-- Scanner + logic -->
+  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
